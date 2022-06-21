@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using Jquery</title>
+    <style>
+        .maindiv{
+            background-color:LightGray;
+        }
+        .btn{
+            background-color:green;
+            width:5rem;
+            height:2rem;
+            border:none;
+            border-radius:3px;
+        }
+        #head{
+            color:brown;
+            text-decoration:underline;
+            text-align:center;
+            background-color: darkgray;
+            height: 5vh;
+        }
+        select{
+            display:block;
+        }
+        .dat{
+            width:50rem;
+            height:5vh;
+            border:none;
+        }
+        .dats{
+            height:10vh;
+            width:50rem;
+        }
+        </style>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#btnsbmt").click(function(){
+                    var firstname = $("#firstname").val();
+                    var lastname = $("#lastname").val();
+                    var email = $("#email").val();
+                    var mobile = $("#mobile").val();
+                    var gender = $("#gender").val();
+                    var dob = $("#dob").val();
+                    var address = $("#address").val();
+                    var city = $("#city").val();
+                    var pin = $("#pin").val();
+                    var state = $("#state").val();
+                    var qualification = $("#qualification").val();
+                    var checkbox1 = $("#checkbox1").val();
+                    var password = $("#password").val();
+
+                  $("span").remove();
+
+                    if(firstname.length == ""){
+                        $("#p1").after('<span style="color:red">Enter your first name.</span>');
+                        $('#firstname').focus();
+                        return false; 
+                    }
+                    if(lastname.length == ""){
+                        $("#p2").after('<span style="color:red">Enter your last name</span>');
+                        $('#lastname').focus();
+                        return false; 
+                    }
+                    if (email.length == "") {  
+                        $('#p3').after('<span style="color:red">This field is required</span>');  
+                        $("#email").focus();
+                        return false;
+                    } else {  
+                        var regEx =/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/; 
+                        var validEmail = regEx.test(email);  
+                        if (!validEmail) {  
+                            $('#p3').after('<span style="color:red">Enter a valid email</span>'); 
+                            $("#email").focus();
+                            return false; 
+                        }  
+                    } 
+    
+                    
+                    if((mobile.length == "")){
+                        $("#p4").after('<span style="color:red">Enter your mobile number</span>');
+                        $('#mobile').focus();
+                        return false;
+                    } else{
+                        var pat = /[0-9]{10}/;
+                        var validMob = pat.test(mobile); 
+                        if((!validMob)){
+                            $("#p4").after('<span style="color:red">Enter valid number</span>');
+                            $('#mobile').focus();
+                            return false;
+                        }
+                        
+                    }
+                    
+                    if($('input[type=radio]:checked').length == 0){
+                        $("#p5").after('<span style="color:red">Select your gender</span>');
+                        $('#gender').focus();
+                        return false; 
+                    }
+                    if(dob.length == ""){
+                        $("#p6").after('<span style="color:red">Please pick your date of birth</span');
+                        $('#dob').focus();
+                        return false; 
+                    }
+                    if(address.length == ""){
+                        $("#p7").after('<span style="color:red">Please enter your addres</span>');
+                        $('#address').focus();
+                        return false; 
+                    }
+                    if(city.length == ""){
+                        $("#p8").after('<span style="color:red">Please enter your city</span>');
+                        $('#city').focus();
+                        return false; 
+                    }
+                    if((pin.length == "")){
+                        $("#p9").after('<span style="color:red">Enter your pin</span>');
+                        $('#pin').focus();
+                        return false;
+                    } else{
+                        var pat = /[0-9]{6}/;
+                        var validPin = pat.test(pin); 
+                        if((!validPin)){
+                            $("#p9").after('<span style="color:red">Enter valid pin number</span>');
+                            $('#pin').focus();
+                            return false;
+                        }
+                        
+                    }
+                    if(state.length == ""){
+                        $("#p10").after('<span style="color:red">Please enter your state</span>');
+                        $('#state').focus();
+                        return false; 
+                    }
+                    if(qualification.length == ""){
+                        $("#p11").after('<span style="color:red">Please enter your qualification</span>');
+                        $('#qualification').focus();
+                        return false; 
+                    }
+                    if($('input[type=checkbox]:checked').length == 0){
+                        $("#p12").after('<span style="color:red">Enter your specialisation</span>');
+                        $("#checkbox1").focus();
+                        return false;
+                    }
+                    if(password.length == ""){
+                        $("#p13").after('<span style="color:red">Please enter your password</span>');
+                        $('#password').focus();
+                        return false; 
+                    }
+                })
+            });
+        </script>
+</head>
+<body>
+    <h3 id="head">Student Registration Form</h3>
+    <form name="frmregistration" id="formreg">
+        <div class="maindiv"><br/>
+            <table>
+            
+            <tr>
+                <td>First Name:</td>
+                <td><input type="text" name="firstname" placeholder="Enter your First name" class="dat" id="firstname"/>
+                    <label id="p1" style="color: red;"></label> </td>
+            </tr>
+            <tr>
+                <td>Last Name:</td>
+                <td><input type="text" name="lastname" placeholder="Enter your last name"class="dat" id="lastname"/>
+                    <label id="p2" style="color: red;"></label> </td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="email" name="email" placeholder="It should contain @"class="dat" id="email"/>
+                    <label id="p3" style="color: red;"></label></td>
+            </tr>
+            <tr>
+                <td>Mobile:</td>
+                <td><input type="number" name="mobile" placeholder="Only 10 digits are allowed" pattern="0-9" class="dat" id="mobile"/>
+                    <label id="p4" style="color: red;"></label></td>
+            </tr>
+            <tr>	
+                <td>Gender:</td>
+                <td><input type="radio" name="gender" id="gender" value="M">Male
+                    <input type="radio" name="gender" id="gender" value="F">Female
+                    <label id="p5" style="color: red;"></label></td>
+            <tr>
+                <td>Date of Birth:</td>
+                <td><input type="date" name="dob"class="dat" id="dob"/>
+                    <label id="p6" style="color: red;"></label></td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td><textarea name="address" rows="5" class="dats" id="address"></textarea>
+                    <label id="p7" style="color: red;"></label></td>
+            </tr>
+            <tr>
+                <td>Ciy:</td>
+                <td><input type="text" name="city" class="dat" id="city"/>
+                    <label id="p8" style="color: red;"></label></td>
+            </tr>
+            <tr>
+                <td>Area PIN:</td>
+                <td><input type="number" name="pin" class="dat" id="pin"/>
+                    <label id="p9" style="color: red;"></label></td>
+            </tr>
+            <tr>
+                <td>State:</td>
+                <td><input type="text" name="state" class="dat" id="state"/>
+                    <label id="p10" style="color: red;"></label></td>
+            </tr>
+            <tr>
+                <td>Qualification:</td>
+                <td><select name="qualification"id="qualification" >
+                       <option value="">--SELECT--</option>
+                        <option value="masters">Masters</option>
+                        <option value="bachlers">Bachelers</option></select>
+                        <label id="p11" style="color: red;"></label></td>
+            </tr>
+            <tr>
+                <td>Specialization:</td>
+                <td><input type="checkbox" name="spec" id="checkbox1">Computer Science<br>
+                    <input type="checkbox" name="spec" id="checkbox1">Information Technology<br>
+                    <input type="checkbox" name="spec" id="checkbox1">Computer Architecture<br>
+                    <input type="checkbox" name="spec" id="checkbox1">Tele Communication
+                    <label id="p12" style="color: red;"></label></td>	
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="password" class="dat" id="password"/>
+                    <label id="p13" style="color: red;"></label></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Register" name="btnsbmt" id="btnsbmt" class="btn" />
+            </tr>
+        </table>
+        </div>
+        </form>
+</body>
+</html>
